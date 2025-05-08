@@ -57,6 +57,8 @@ const MediaScreen = () => {
   const credits = useAppSelector(state =>
     type === 'movie' ? state.movies.credits : state.series.credits,
   );
+
+  const selectedItem = type === 'movie' ? selectedMovie : selectedSerie;
   const videoTrailer = type === 'movie' ? movieVideos : serieVideos;
   const firstVideoKey = videoTrailer?.[0]?.key;
 
@@ -69,7 +71,9 @@ const MediaScreen = () => {
     credits?.crew?.find((person: any) => person.job === 'Director')?.name ||
     'Sin información';
 
-  const selectedItem = type === 'movie' ? selectedMovie : selectedSerie;
+  const videoThumbnailUrl = firstVideoKey
+    ? `https://img.youtube.com/vi/${firstVideoKey}/hqdefault.jpg`
+    : POSTER_URL + selectedItem.backdrop_path;
 
   console.log('Selected item:', selectedItem);
 
@@ -160,7 +164,7 @@ const MediaScreen = () => {
 
       <ScrollView style={styles.scrollView}>
         <HeroBanner
-          imageUrl={POSTER_URL + selectedItem.backdrop_path}
+          imageUrl={videoThumbnailUrl}
           title={selectedItem.title || selectedItem.name}
           type={type}
           onPress={() => {

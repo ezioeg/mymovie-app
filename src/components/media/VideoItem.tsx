@@ -15,13 +15,18 @@ const VideoItem = ({video, backdropPath}: any) => {
       ? `https://www.youtube.com/watch?v=${video.key}`
       : null;
 
+  const thumbnailUrl =
+    video.site === 'YouTube'
+      ? `https://img.youtube.com/vi/${video.key}/hqdefault.jpg`
+      : POSTER_URL + backdropPath;
+
   return (
     <View style={styles.episodeItem}>
       <TouchableOpacity
         style={styles.episodeThumbnail}
         onPress={() => youtubeUrl && Linking.openURL(youtubeUrl)}>
         <ImageBackground
-          source={{uri: POSTER_URL + backdropPath}}
+          source={{uri: thumbnailUrl}}
           style={styles.thumbnailImage}>
           <View style={styles.playIconContainer}>
             <Play color="white" size={24} />
