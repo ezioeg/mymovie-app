@@ -29,10 +29,10 @@ The app includes:
 
 ## Setup
 
-1. Install dependencies
+1. Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
 
-   ```bash
-   npm install
+```bash
+npm install --force
    ```
    
 ## Run
@@ -51,6 +51,14 @@ npm run android
 
 # OR using Yarn
 yarn android
+```
+
+### Before running on iOS for the first time, make sure to install CocoaPods dependencies:
+
+```bash
+cd ios
+pod install
+cd ..
 ```
 
 ### Run for iOS
