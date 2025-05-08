@@ -1,16 +1,13 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {Cast, Download, Search} from 'lucide-react-native';
-
-interface HeaderBarProps {
-  onSearchPress: () => void;
-}
+import {HeaderBarProps} from '../../types/mediaTypes';
 
 const HeaderBar: React.FC<HeaderBarProps> = ({onSearchPress}) => {
   return (
     <View style={styles.header}>
       <Image
-        source={require('../assets/icons/netflix-logo.png')}
+        source={require('../../assets/icons/netflix-logo.png')}
         style={styles.logo}
         resizeMode="contain"
       />

@@ -1,33 +1,11 @@
 import {StyleSheet, TouchableOpacity, Image, View, Text} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useAppDispatch} from '../redux/store';
-import {setSelectedMovie} from '../redux/slices/moviesSlice';
-import {setSelectedSerie} from '../redux/slices/seriesSlice';
-import {POSTER_URL} from '../services/tmdbAPI';
+import {POSTER_URL} from '../../services/tmdbAPI';
+import {MediaItemProps} from '../../types/mediaTypes';
 
-export type MovieScreenNavigation = NativeStackNavigationProp<
-  {Movie: {type: 'movie' | 'serie'} | undefined},
-  'Movie'
->;
-
-interface MovieItemProps {
-  item: any;
-  index?: number;
-  showNumber?: boolean;
-}
-
-function MovieItem({item, index, showNumber = false}: MovieItemProps) {
-  const navigation = useNavigation<MovieScreenNavigation>();
-  const dispatch = useAppDispatch();
-
+function MediaItem({item, index, showNumber = false, onPress}: MediaItemProps) {
   const handlePress = () => {
-    if (item.name) {
-      dispatch(setSelectedSerie(item));
-    } else if (item.title) {
-      dispatch(setSelectedMovie(item));
-    }
-    navigation.navigate('Movie', {type: item.name ? 'serie' : 'movie'});
+    const type = item.name ? 'serie' : 'movie';
+    onPress?.(item, type);
   };
 
   const renderNumberWithOutline = (num: number) => {
@@ -129,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieItem;
+export default MediaItem;

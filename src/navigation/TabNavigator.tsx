@@ -1,8 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home, PlaySquare, User} from 'lucide-react-native';
 import HomeScreen from '../screens/Home';
 import NewHotScreen from '../screens/NewHot';
 import MyNetflixScreen from '../screens/MyNetflix';
+import HomeTabIcon from '../components/icons/HomeTabIcon';
+import PlaySquareTabIcon from '../components/icons/PlaySquareTabIcon';
+import UserTabIcon from '../components/icons/UserTabIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,16 +22,14 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({color, size}) => <Home size={size} color={color} />,
+          tabBarIcon: HomeTabIcon,
         }}
       />
       <Tab.Screen
         name="New & Hot"
         component={NewHotScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <PlaySquare size={size} color={color} />
-          ),
+          tabBarIcon: PlaySquareTabIcon,
         }}
       />
 
@@ -37,7 +37,7 @@ function TabNavigator() {
         name="My Netflix"
         component={MyNetflixScreen}
         options={{
-          tabBarIcon: ({color, size}) => <User size={size} color={color} />,
+          tabBarIcon: UserTabIcon,
         }}
       />
     </Tab.Navigator>

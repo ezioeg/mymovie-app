@@ -1,19 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {ChevronDown} from 'lucide-react-native';
-
-interface CategoryTab {
-  label: string;
-  value: 'movies' | 'series' | 'categories';
-  hasIcon?: boolean;
-}
-
-interface CategoryTabsProps {
-  tabs: CategoryTab[];
-  activeCategory: 'movies' | 'series' | 'categories';
-  onTabPress: (value: 'movies' | 'series' | 'categories') => void;
-  handleCategoriesPress: () => void;
-}
+import {CategoryTabsProps} from '../../types/categoryTypes';
 
 const CategoryTabs = ({
   tabs,
@@ -67,9 +55,6 @@ const styles = StyleSheet.create({
   categoryTabWithIcon: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: 10,
-  },
-  categoryTabActive: {
     paddingRight: 10,
   },
   categoryText: {

@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
@@ -17,6 +11,7 @@ import {
   fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
+  setSelectedMovie,
 } from '../../redux/slices/moviesSlice';
 import {
   fetchNowPlayingSeries,
@@ -25,28 +20,25 @@ import {
   fetchSeriesGenres,
   fetchTopRatedSeries,
   fetchUpcomingSeries,
+  setSelectedSerie,
 } from '../../redux/slices/seriesSlice';
-import MoviesSection from '../../components/MoviesSection';
-import FeaturedMovie from '../../components/FeaturedMovie';
-import CategoriesOverlay from '../../components/CategoriesOverlay';
-import CategoryTabs from '../../components/CategoryTabs';
-import {useNavigation} from '@react-navigation/native';
-import HeaderBar from '../../components/HeaderBar';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-
-export type SearchScreenNavigation = NativeStackNavigationProp<
-  {Search: {activeCategory: 'movies' | 'series' | 'categories'}},
-  'Search'
->;
+import MediaSection from '../../components/media/MediaSection';
+import MediaFeatureSection from '../../components/media/MediaFeatureSection';
+import CategoriesOverlay from '../../components/common/CategoriesOverlay';
+import CategoryTabs from '../../components/common/CategoryTabs';
+import HeaderBar from '../../components/common/HeaderBar';
+import {SearchScreenNavigation} from '../../types/searchTypes';
+import {Category} from '../../types/categoryTypes';
+import {Media, MediaScreenNavigation} from '../../types/mediaTypes';
+import LoadingOverlay from '../../components/common/LoadingOverlay';
 
 export default function HomeScreen() {
-  const [activeCategory, setActiveCategory] = useState<
-    'movies' | 'series' | 'categories'
-  >('movies');
-  const [showCategories, setShowCategories] = useState(false);
-
-  const navigation = useNavigation<SearchScreenNavigation>();
+  const searchNavigation = useNavigation<SearchScreenNavigation>();
+  const movieNavigation = useNavigation<MediaScreenNavigation>();
   const dispatch = useAppDispatch();
+
+  const [activeCategory, setActiveCategory] = useState<Category>('movies');
+  const [showCategories, setShowCategories] = useState(false);
 
   const moviesState = useAppSelector(state => state.movies);
   const seriesState = useAppSelector(state => state.series);
@@ -88,14 +80,28 @@ export default function HomeScreen() {
     setShowCategories(false);
   };
 
-  const handleTabPress = (category: 'movies' | 'series' | 'categories') => {
+  const handleTabPress = (category: Category) => {
     setActiveCategory(category);
+  };
+
+  const handleFeaturedPress = (item: Media, type: 'serie' | 'movie') => {
+    type === 'movie'
+      ? dispatch(setSelectedMovie(item))
+      : dispatch(setSelectedSerie(item));
+    movieNavigation.navigate('Media', {type});
+  };
+
+  const handleMovieItemPress = (item: Media, type: 'serie' | 'movie') => {
+    type === 'movie'
+      ? dispatch(setSelectedMovie(item))
+      : dispatch(setSelectedSerie(item));
+    movieNavigation.navigate('Media', {type});
   };
 
   if (error) {
     return (
       <View style={styles.container}>
-        <Text style={{color: 'red'}}>{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       </View>
     );
   }
@@ -124,7 +130,9 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.container}>
         <HeaderBar
           onSearchPress={() =>
-            navigation.navigate('Search', {activeCategory: activeCategory})
+            searchNavigation.navigate('Search', {
+              activeCategory: activeCategory,
+            })
           }
         />
 
@@ -140,42 +148,47 @@ export default function HomeScreen() {
         />
 
         <ScrollView>
-          {popular.length > 0 && <FeaturedMovie item={popular[0]} />}
+          {popular.length > 0 && (
+            <MediaFeatureSection
+              item={popular[0]}
+              onPress={handleFeaturedPress}
+            />
+          )}
 
-          <MoviesSection
+          <MediaSection
             movies={popular}
             title={
               activeCategory === 'movies'
                 ? 'Películas Populares'
                 : 'Series Populares'
             }
+            onPress={handleMovieItemPress}
           />
-          <MoviesSection
+          <MediaSection
             movies={upcoming}
             title={
               activeCategory === 'movies'
                 ? 'Próximamente'
                 : 'En emisión próximamente'
             }
+            onPress={handleMovieItemPress}
           />
-          <MoviesSection
+          <MediaSection
             movies={topRated}
             title={
               activeCategory === 'movies'
                 ? 'Mejor Valoradas'
                 : 'Series Mejor Valoradas'
             }
+            onPress={handleMovieItemPress}
           />
-          <MoviesSection
+          <MediaSection
             movies={nowPlaying}
             title={activeCategory === 'movies' ? 'En Cines' : 'En emisión hoy'}
+            onPress={handleMovieItemPress}
           />
         </ScrollView>
-        {loading && (
-          <View style={styles.loadingOverlay}>
-            <ActivityIndicator size="large" color="#fff" />
-          </View>
-        )}
+        {loading && <LoadingOverlay />}
       </SafeAreaView>
     </LinearGradient>
   );
@@ -185,15 +198,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  loadingOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1000,
-  },
+  errorText: {color: 'red'},
 });

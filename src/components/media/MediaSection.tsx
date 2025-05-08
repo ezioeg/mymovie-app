@@ -1,19 +1,8 @@
 import {View, Text, StyleSheet, FlatList} from 'react-native';
-import MovieItem from './MovieItem';
+import MediaItem from './MediaItem';
+import {PopularMediaSectionProps} from '../../types/mediaTypes';
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path?: string;
-  backdrop_path?: string;
-}
-
-interface PopularMoviesSectionProps {
-  movies: Movie[];
-  title: string;
-}
-
-const MovieSection = ({movies, title}: PopularMoviesSectionProps) => {
+const MovieSection = ({movies, title, onPress}: PopularMediaSectionProps) => {
   const isPopular =
     title === 'Películas Populares' ||
     title === 'Mejor Valoradas' ||
@@ -27,10 +16,17 @@ const MovieSection = ({movies, title}: PopularMoviesSectionProps) => {
         horizontal
         keyExtractor={item => item.id.toString()}
         renderItem={({item, index}) => (
-          <MovieItem item={item} index={index} showNumber={isPopular} />
+          <MediaItem
+            item={item}
+            index={index}
+            showNumber={isPopular}
+            onPress={onPress}
+          />
         )}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={isPopular ? {paddingLeft: 15} : undefined}
+        contentContainerStyle={
+          isPopular ? styles.flatListContentContainer : undefined
+        }
       />
     </View>
   );
@@ -47,6 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  flatListContentContainer: {paddingLeft: 15},
 });
 
 export default MovieSection;

@@ -1,22 +1,12 @@
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {Play, Plus} from 'lucide-react-native';
-import {useAppDispatch} from '../redux/store';
-import {setSelectedMovie} from '../redux/slices/moviesSlice';
-import {POSTER_URL} from '../services/tmdbAPI';
-import type {MovieScreenNavigation} from './MovieItem';
+import {POSTER_URL} from '../../services/tmdbAPI';
+import {FeaturedMediaProps} from '../../types/mediaTypes';
 
-interface FeaturedMovieProps {
-  item: any;
-}
-
-export default function FeaturedMovie({item}: FeaturedMovieProps) {
-  const navigation = useNavigation<MovieScreenNavigation>();
-  const dispatch = useAppDispatch();
-
+export default function FeaturedMovie({item, onPress}: FeaturedMediaProps) {
   const handlePress = () => {
-    dispatch(setSelectedMovie(item));
-    navigation.navigate('Movie');
+    const type = item.name ? 'serie' : 'movie';
+    onPress?.(item, type);
   };
 
   return (

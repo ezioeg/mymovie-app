@@ -1,4 +1,4 @@
-import tmdbAPI from './tmdbAPI';
+import tmdbAPI from '../tmdbAPI';
 
 export const searchSeriesByTitle = async (query: string) => {
   const res = await tmdbAPI.get('/search/tv', {

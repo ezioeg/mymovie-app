@@ -12,7 +12,7 @@ import {
   discoverSeries,
   getSeriesGenres,
   searchSeriesByTitle,
-} from '../../services/searchSeries';
+} from '../../services/series/search';
 
 export const fetchPopularSeries = createAsyncThunk(
   'series/fetchPopular',

@@ -7,13 +7,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {X} from 'lucide-react-native';
-
-interface CategoriesOverlayProps {
-  visible: boolean;
-  onClose: () => void;
-  genres: {id: number; name: string}[];
-  handleGenrePress: (genreId: number) => void;
-}
+import {CategoriesOverlayProps} from '../../types/categoryTypes';
 
 const CategoriesOverlay = ({
   visible,

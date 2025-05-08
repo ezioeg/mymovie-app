@@ -5,29 +5,16 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TouchableOpacity,
   ScrollView,
   StatusBar,
-  SafeAreaView,
-  ImageBackground,
   Dimensions,
   Linking,
+  FlatList,
 } from 'react-native';
-import {
-  ArrowLeft,
-  Download,
-  Search,
-  Info,
-  Play,
-  Plus,
-  ThumbsUp,
-  Share,
-} from 'lucide-react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
+import {Download, Play, Plus, ThumbsUp, Share} from 'lucide-react-native';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
-import {POSTER_URL} from '../../services/tmdbAPI';
 import {
   fetchMovieCredits,
   fetchMovieVideos,
@@ -40,22 +27,27 @@ import {
   fetchSimilarSeries,
   setSelectedSerie,
 } from '../../redux/slices/seriesSlice';
-import {MovieScreenNavigation} from '../../components/MovieItem';
+import {POSTER_URL} from '../../services/tmdbAPI';
+import {MediaScreenNavigation} from '../../types/mediaTypes';
+import Header from '../../components/media/Header';
+import VideoItem from '../../components/media/VideoItem';
+import SimilarItem from '../../components/media/SimilarItem';
+import TabBar from '../../components/media/TabBar';
+import HeroBanner from '../../components/media/HeroBanner';
 
 const {width} = Dimensions.get('window');
-
-// Tabs para la sección inferior
 const tabs = ['Tráileres y más', 'Más títulos similares'];
 
-const Movie = () => {
-  const navigation = useNavigation<MovieScreenNavigation>();
+const MediaScreen = () => {
+  const route = useRoute();
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<MediaScreenNavigation>();
+
   const [activeTab, setActiveTab] = useState(0);
   const [showEpisodes, setShowEpisodes] = useState(false);
 
-  const route = useRoute();
   const {type} = route.params as {type: 'movie' | 'serie'};
 
-  const dispatch = useAppDispatch();
   const selectedMovie = useAppSelector(state => state.movies.selectedMovie);
   const selectedSerie = useAppSelector(state => state.series.selectedSerie);
   const movieVideos = useAppSelector(state => state.movies.videos);
@@ -114,42 +106,12 @@ const Movie = () => {
           </View>
 
           {videos.map(video => {
-            const youtubeUrl =
-              video.site === 'YouTube'
-                ? `https://www.youtube.com/watch?v=${video.key}`
-                : null;
-
             return (
-              <View key={video.id} style={styles.episodeItem}>
-                <TouchableOpacity
-                  style={styles.episodeThumbnail}
-                  onPress={() => {
-                    if (youtubeUrl) {
-                      Linking.openURL(youtubeUrl);
-                    }
-                  }}>
-                  <ImageBackground
-                    source={{uri: POSTER_URL + selectedItem.backdrop_path}}
-                    style={styles.thumbnailImage}>
-                    <View style={styles.playIconContainer}>
-                      <Play color="white" size={24} />
-                    </View>
-                  </ImageBackground>
-                </TouchableOpacity>
-
-                <View style={styles.episodeInfo}>
-                  <View style={styles.episodeTitle}>
-                    <Text style={styles.episodeNumber}>{video.name}</Text>
-                  </View>
-                  <Text style={styles.episodeDescription}>
-                    Video oficial de tipo {video.type}
-                  </Text>
-                </View>
-
-                <TouchableOpacity style={styles.downloadButton}>
-                  <Download color="white" size={24} />
-                </TouchableOpacity>
-              </View>
+              <VideoItem
+                key={video.id}
+                video={video}
+                backdropPath={selectedItem.backdrop_path}
+              />
             );
           })}
         </>
@@ -158,33 +120,27 @@ const Movie = () => {
       const similars = type === 'movie' ? similarMovies : similarSeries;
 
       return (
-        <View style={{}}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={{paddingHorizontal: 15}}>
-            {similars.map(item => (
-              <TouchableOpacity
-                key={item.id}
-                style={styles.similarItem}
+        <View style={styles.renderTabContentContainer}>
+          <FlatList
+            data={similars}
+            numColumns={3}
+            keyExtractor={(item: any) => item.id.toString()}
+            contentContainerStyle={styles.gridContainer}
+            columnWrapperStyle={styles.columnWrapperStyle}
+            renderItem={({item}: any) => (
+              <SimilarItem
+                item={item}
                 onPress={() => {
                   dispatch(
                     type === 'movie'
                       ? setSelectedMovie(item)
                       : setSelectedSerie(item),
                   );
-                  navigation.navigate('Movie', {type});
-                }}>
-                <Image
-                  source={{uri: POSTER_URL + item.poster_path}}
-                  style={styles.similarImage}
-                />
-                <Text style={styles.similarName} numberOfLines={2}>
-                  {item.title || item.name}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+                  navigation.navigate('Media', {type});
+                }}
+              />
+            )}
+          />
         </View>
       );
     }
@@ -200,56 +156,21 @@ const Movie = () => {
         translucent
       />
 
-      {/* Header */}
-      <SafeAreaView style={styles.header}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowLeft color="white" size={24} />
-        </TouchableOpacity>
-
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconButton}>
-            <Download color="white" size={22} />
-            <View style={styles.notificationDot}>
-              <Text style={styles.notificationText}>!</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Search color="white" size={24} />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+      <Header onBackPress={() => navigation.goBack()} />
 
       <ScrollView style={styles.scrollView}>
-        {/* Hero Image */}
-        <TouchableOpacity
-          activeOpacity={0.9}
+        <HeroBanner
+          imageUrl={POSTER_URL + selectedItem.backdrop_path}
+          title={selectedItem.title || selectedItem.name}
+          type={type}
           onPress={() => {
             if (firstVideoKey) {
               Linking.openURL(
                 `https://www.youtube.com/watch?v=${firstVideoKey}`,
               );
             }
-          }}>
-          <ImageBackground
-            source={{uri: POSTER_URL + selectedItem.backdrop_path}}
-            style={styles.heroImage}>
-            <LinearGradient
-              colors={['transparent', 'rgba(0,0,0,0.8)', '#000']}
-              style={styles.gradient}
-            />
-            <View style={styles.heroContent}>
-              <Text style={styles.seriesType}>{type}</Text>
-              <Text style={styles.seriesTitle}>
-                {selectedItem.title || selectedItem.name}
-              </Text>
-            </View>
-            <View style={styles.playButtonOverlay}>
-              <Play color="white" size={40} />
-            </View>
-          </ImageBackground>
-        </TouchableOpacity>
+          }}
+        />
 
         {/* Info Bar */}
         <View style={styles.infoBar}>
@@ -325,43 +246,20 @@ const Movie = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Tabs */}
-        <View style={styles.tabsContainer}>
-          <View style={styles.tabs}>
-            {tabs.map((tab, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[styles.tab, activeTab === index && styles.activeTab]}
-                onPress={() => {
-                  setActiveTab(index);
-                  if (index === 0) {
-                    toggleView();
-                  }
-                }}>
-                <Text
-                  style={[
-                    styles.tabText,
-                    activeTab === index && styles.activeTabText,
-                  ]}>
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={styles.tabIndicator}>
-            <View
-              style={[
-                styles.indicator,
-                {
-                  left: `${(100 / tabs.length) * activeTab}%`,
-                  width: `${100 / tabs.length}%`,
-                },
-              ]}
-            />
-          </View>
-        </View>
+        <TabBar
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabPress={(index: any) => {
+            setActiveTab(index);
+            if (index === 0) {
+              toggleView();
+            }
+          }}
+        />
 
-        <View style={{marginTop: 16}}>{renderTabContent()}</View>
+        <View style={styles.renderTabContentContainer}>
+          {renderTabContent()}
+        </View>
       </ScrollView>
     </View>
   );
@@ -372,33 +270,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingTop: 40, // Para compensar el StatusBar translúcido
-    paddingBottom: 10,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10,
-  },
-  headerRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  playButtonOverlay: {
-    position: 'absolute',
-    top: '45%',
-    left: '45%',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    borderRadius: 30,
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   thumbnailImage: {
     width: 120,
     height: 70,
@@ -407,58 +278,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
   },
-  backButton: {
-    padding: 5,
-  },
-  iconButton: {
-    padding: 5,
-    marginLeft: 15,
-    position: 'relative',
-  },
-  notificationDot: {
-    position: 'absolute',
-    top: -5,
-    right: -5,
-    backgroundColor: '#e87c03',
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  notificationText: {
-    color: 'white',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
   scrollView: {
     flex: 1,
-  },
-  heroImage: {
-    width: '100%',
-    height: 300,
-    justifyContent: 'flex-end',
-  },
-  gradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 150,
-  },
-  heroContent: {
-    padding: 15,
-    paddingBottom: 20,
-  },
-  seriesType: {
-    color: '#ccc',
-    fontSize: 14,
-    marginBottom: 5,
-  },
-  seriesTitle: {
-    color: 'white',
-    fontSize: 32,
-    fontWeight: 'bold',
   },
   infoBar: {
     flexDirection: 'row',
@@ -574,36 +395,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: 'center',
   },
-  tabsContainer: {},
-  tabs: {
-    flexDirection: 'row',
-    paddingHorizontal: 15,
-  },
-  tab: {
-    paddingVertical: 15,
-    width: `${100 / tabs.length}%`,
-    alignItems: 'center',
-  },
-  activeTab: {},
-  tabText: {
-    color: '#999',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  activeTabText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  tabIndicator: {
-    height: 2,
-    backgroundColor: '#333',
-    position: 'relative',
-  },
-  indicator: {
-    position: 'absolute',
-    height: 2,
-    backgroundColor: 'red',
-  },
+
   episodesHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -617,73 +409,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  episodeItem: {
-    flexDirection: 'row',
+  renderTabContentContainer: {marginTop: 16},
+  renderTabContent: {paddingHorizontal: 15},
+  gridContainer: {
     paddingHorizontal: 15,
-    marginBottom: 20,
+    gap: 15,
   },
-  episodeThumbnail: {
-    width: 120,
-    height: 70,
-    borderRadius: 4,
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  episodeImage: {
-    width: '100%',
-    height: '100%',
-  },
-  playIconContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)',
-  },
-  episodeInfo: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
-  episodeTitle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 5,
-  },
-  episodeNumber: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  episodeDescription: {
-    color: '#ccc',
-    fontSize: 12,
-    lineHeight: 18,
-  },
-  downloadButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  similarItem: {
-    marginRight: 12,
-    width: 120,
-    alignItems: 'center',
-  },
-  similarImage: {
-    width: 120,
-    height: 180,
-    borderRadius: 8,
-    marginBottom: 6,
-  },
-  similarName: {
-    color: 'white',
-    fontSize: 14,
-    textAlign: 'center',
-  },
+  columnWrapperStyle: {justifyContent: 'space-between'},
 });
 
-export default Movie;
+export default MediaScreen;

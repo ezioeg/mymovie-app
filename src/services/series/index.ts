@@ -1,4 +1,4 @@
-import tmdbAPI from './tmdbAPI';
+import tmdbAPI from '../tmdbAPI';
 
 export const getPopularSeries = async () => {
   const res = await tmdbAPI.get('/tv/popular');

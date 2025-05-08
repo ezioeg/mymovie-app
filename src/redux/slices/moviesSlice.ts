@@ -12,7 +12,7 @@ import {
   discoverMovies,
   getMoviesGenres,
   searchMoviesByTitle,
-} from '../../services/searchMovies';
+} from '../../services/movies/search';
 
 export const fetchPopularMovies = createAsyncThunk(
   'movies/fetchPopular',
