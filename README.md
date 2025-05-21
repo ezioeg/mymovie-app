@@ -29,11 +29,12 @@ The app includes:
 - react-native-screens v4.10.0
 - react-native-safe-area-context v5.4.0
 - react-native-gesture-handler v2.25.0
+- react-native-reanimated v3.17.5
 
 ### UI/Styling
 - lucide-react-native v0.507.0 (Icons)
-- react-native-linear-gradient v2.8.3
 - react-native-svg v15.11.2
+- react-native-linear-gradient v2.8.3
 
 ### State Management
 - @reduxjs/toolkit v2.8.0
