@@ -1,17 +1,22 @@
 # My Movie App
 My Movie App is a technical test using React Native CLI, where the goal is to clone a basic version of Netflix within a limited time. The project uses The Movie Database (TMDB) API to fetch and display movie and TV show data.
 
-The app includes:
+## Features
 
-- A Home screen that displays:
-  - A hero banner carousel with featured movies or shows
-  - Category sections like "Trending", "Top Rated", and "Upcoming"
-  - Scrollable lists of movies for each category
-- A Details screen when a movie or TV show is selected, including:
-  - A poster image and title
-  - Release date and rating
-  - Overview description
-  - A list of related or recommended content
+- Home Screen:
+  - A hero banner featuring the most highlighted movie or TV show.
+  - A button section to filter by Movies, Series, or Categories. When selecting Categories, a translucent overlay appears allowing users to choose genres such as Drama, Horror, Comedy, Action, among others.
+  - Scrollable lists of content based on the selected section (Movies, Series, or the chosen Category), organized by: Trending, Top Rated, Upcoming and others.
+- Details Screen:
+  - Thumbnail image of the poster (clickable to play the main video of the movie or series).
+  - Title, release date, and rating.
+  - General description of the content.
+  - List of trailers and related content.
+  - Cast and crew information (e.g., actors, directors, writers).
+- Search Screen:
+  - Initially displays recommended content.
+  - Allows searching by movie or series title.
+  - Applies the previously selected filters (Movies or Series) to show relevant results.
 
 ## Technologies Used
 ### Core
