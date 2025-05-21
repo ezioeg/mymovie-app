@@ -1,9 +1,4 @@
-
-
-
-
 # My Movie App
-
 My Movie App is a technical test using React Native CLI, where the goal is to clone a basic version of Netflix within a limited time. The project uses The Movie Database (TMDB) API to fetch and display movie and TV show data.
 
 The app includes:
@@ -19,7 +14,6 @@ The app includes:
   - A list of related or recommended content
 
 ## Technologies Used
-
 ### Core
 - React Native 0.79.2
 - React v19.0.0
@@ -44,15 +38,12 @@ The app includes:
 - Axios v1.9.0
 
 ## Setup
-
-1. Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
-
+* Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
 ```bash
 npm install --force
    ```
    
 ## Run
-
 Start the app
 
    ```bash
@@ -60,7 +51,6 @@ Start the app
    ```
 
 ### Run for Android
-
 ```bash
 # using npm
 npm run android
@@ -69,8 +59,7 @@ npm run android
 yarn android
 ```
 
-1. Before running on iOS for the first time, make sure to install CocoaPods dependencies:
-
+* Before running on iOS for the first time, make sure to install CocoaPods dependencies:
 ```bash
 cd ios
 pod install
@@ -78,7 +67,6 @@ cd ..
 ```
 
 ### Run for iOS
-
 ```bash
 # using npm
 npm run ios
@@ -88,9 +76,7 @@ yarn ios
 ```
    
 ## Contributions
-
 Contributions are welcome. If you wish to improve the project, please fork it and submit a pull request.
 
 ## Contact
-
 For questions or suggestions, you can contact me at [ezioeg@gmail.com].
