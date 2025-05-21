@@ -20,12 +20,27 @@ The app includes:
 
 ## Technologies Used
 
-- **React Native**: 0.79.2
-- **React**: 19.0.0
-- **Redux Toolkit**
-- **Axios**
-- **Lucide Icons**: lucide-react-native
-- **SVG Icons**: react-native-svg
+### Core
+- React Native 0.79.2
+- React v19.0.0
+- @react-navigation/native v7.1.8
+- @react-navigation/native-stack v7.3.12
+- @react-navigation/bottom-tabs v7.3.12
+- react-native-screens v4.10.0
+- react-native-safe-area-context v5.4.0
+- react-native-gesture-handler v2.25.0
+
+### UI/Styling
+- lucide-react-native v0.507.0 (Icons)
+- react-native-linear-gradient v2.8.3
+- react-native-svg v15.11.2
+
+### State Management
+- @reduxjs/toolkit v2.8.0
+- react-redux v9.2.0
+
+### Utilities
+- Axios v1.9.0
 
 ## Setup
 
