@@ -69,7 +69,7 @@ npm run android
 yarn android
 ```
 
-### Before running on iOS for the first time, make sure to install CocoaPods dependencies:
+1. Before running on iOS for the first time, make sure to install CocoaPods dependencies:
 
 ```bash
 cd ios
