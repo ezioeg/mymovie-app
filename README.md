@@ -38,7 +38,7 @@ The app includes:
 - Axios v1.9.0
 
 ## Setup
-* Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
+Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
 ```bash
 npm install --force
    ```
