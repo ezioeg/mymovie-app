@@ -44,7 +44,7 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 
 ## Setup
 Install dependencies:
-**Warning:** in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries
+> ⚠️ **Warning:** in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries
 ```bash
 npm install --force
    ```
