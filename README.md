@@ -43,7 +43,8 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 - Axios v1.9.0
 
 ## Setup
-Install dependencies (in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries):
+Install dependencies:
+**Warning:** in this case, React 19.0.0 is used, which may cause peer dependency warnings with some libraries
 ```bash
 npm install --force
    ```
