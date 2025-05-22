@@ -20,23 +20,23 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 
 ## Technologies Used
 ### Core
-- React Native 0.79.2
-- React v19.0.0
-- @react-navigation/native v7.1.8
-- @react-navigation/native-stack v7.3.12
-- @react-navigation/bottom-tabs v7.3.12
+- [React Native](https://reactnative.dev/) `0.79.2`
+- [React](https://reactjs.org/) `v19.0.0`
+- [React Navigation Native](https://reactnavigation.org/docs/getting-started) `v7.1.8`
+- [React Navigation Native Stack](https://reactnavigation.org/docs/native-stack-navigator) `v7.3.12`
+- [React Navigation Bottom Tabs](https://reactnavigation.org/docs/bottom-tab-navigator) `v7.3.12`
 
 ### UI/Styling
-- lucide-react-native v0.507.0 (Icons)
-- react-native-svg v15.11.2
-- react-native-linear-gradient v2.8.3
+- [Lucide React Native](https://github.com/lucide-icons/lucide-react-native) `v0.507.0` (Icons)
+- [React Native Svg](https://github.com/react-native-svg/react-native-svg) `v15.11.2`
+- [React Native Linear Gradient](https://github.com/react-native-linear-gradient/react-native-linear-gradient) `v2.8.3`
 
 ### State Management
-- @reduxjs/toolkit v2.8.0
-- react-redux v9.2.0
+- [React Redux](https://react-redux.js.org/) `v9.2.0`
+- [Redux Toolkit](https://redux-toolkit.js.org/) `v2.8.0`
 
 ### Utilities
-- Axios v1.9.0
+- [Axios](https://axios-http.com/) `v1.9.0`
 
 ## Setup
 Install dependencies:
