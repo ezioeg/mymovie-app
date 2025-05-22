@@ -3,17 +3,17 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 
 ## Features
 
-- Home Screen:
+- **Home Screen**
   - A hero banner featuring the most highlighted movie or TV show.
   - A button section to filter by Movies, Series, or Categories. When selecting Categories, a translucent overlay appears allowing users to choose genres such as Drama, Horror, Comedy, Action, among others.
   - Scrollable lists of content based on the selected section (Movies, Series, or the chosen Category), organized by: Trending, Top Rated, Upcoming and others.
-- Details Screen:
+- **Details Screen**
   - Thumbnail image of the poster (clickable to play the main video of the movie or series).
   - Title, release date, and rating.
   - General description of the content.
   - List of trailers and related content.
   - Cast and crew information (e.g., actors, directors, writers).
-- Search Screen:
+- **Search Screen**
   - Initially displays recommended content.
   - Allows searching by movie or series title.
   - Applies the previously selected filters (Movies or Series) to show relevant results.
@@ -25,10 +25,6 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 - @react-navigation/native v7.1.8
 - @react-navigation/native-stack v7.3.12
 - @react-navigation/bottom-tabs v7.3.12
-- react-native-screens v4.10.0
-- react-native-safe-area-context v5.4.0
-- react-native-gesture-handler v2.25.0
-- react-native-reanimated v3.17.5
 
 ### UI/Styling
 - lucide-react-native v0.507.0 (Icons)
