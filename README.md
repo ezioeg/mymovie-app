@@ -36,12 +36,12 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
 <details>
   <summary>📱 iOS screenshots</summary>
   <p>
-    <img src="https://github.com/user-attachments/assets/ac8ecccb-1eca-483a-8d4b-b62f276445db" alt="iOS Screenshot 1" width="400"/>
-    <img src="https://github.com/user-attachments/assets/a8ad6db1-98e0-45b3-bf89-2d01f030a069" alt="iOS Screenshot 2" width="400"/>
+    <img src="https://github.com/user-attachments/assets/9c2f536a-463c-46c0-9289-a2af504ec881" alt="iOS Screenshot 1" width="400"/>
+    <img src="https://github.com/user-attachments/assets/8d81ce98-8bff-4dfe-92ca-eec71279dee2" alt="iOS Screenshot 2" width="400"/>
   </p>
   <p>
-    <img src="https://github.com/user-attachments/assets/94ae562f-3137-4064-a8a7-c48f4e06387d" alt="iOS Screenshot 3" width="400"/>
-    <img src="https://github.com/user-attachments/assets/cfc87408-177d-407f-a3f2-75deacb209c8" alt="iOS Screenshot 4" width="400"/>
+    <img src="https://github.com/user-attachments/assets/1d048793-c026-4789-bda5-a82007b3965f" alt="iOS Screenshot 3" width="400"/>
+    <img src="https://github.com/user-attachments/assets/a8c8cf8f-63a2-477f-a408-cd18ce9bbad3" alt="iOS Screenshot 4" width="400"/>
   </p>
 </details>
 
