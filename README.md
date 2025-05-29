@@ -17,6 +17,34 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
   - Initially displays recommended content.
   - Allows searching by movie or series title.
   - Applies the previously selected filters (Movies or Series) to show relevant results.
+ 
+<details>
+  <summary>📱 Android screenshots</summary>
+  <p>
+    <img src="https://github.com/user-attachments/assets/05466b3e-1e0f-4973-a75b-c08e46e23a85" alt="Android Screenshot 1" width="400"/>
+    <img src="https://github.com/user-attachments/assets/7b25326c-349e-42e4-8bd3-8f946354ecfa" alt="Android Screenshot 2" width="400"/>
+  </p>
+  <p>
+    <img src="https://github.com/user-attachments/assets/e03af8a6-a5b7-49e2-b290-7e94bcc130c5" alt="Android Screenshot 3" width="400"/>
+    <img src="https://github.com/user-attachments/assets/fda73a60-18b7-4a76-af00-4ca0430a98db" alt="Android Screenshot 4" width="400"/>
+  </p>
+  <p>
+    <img src="https://github.com/user-attachments/assets/0f2dc4b4-4106-40fc-acbd-8ec0c2b8952b" alt="Android Screenshot 5" width="400"/>
+  </p>
+</details>
+
+<details>
+  <summary>📱 iOS screenshots</summary>
+  <p>
+    <img src="https://github.com/user-attachments/assets/ac8ecccb-1eca-483a-8d4b-b62f276445db" alt="iOS Screenshot 1" width="400"/>
+    <img src="https://github.com/user-attachments/assets/a8ad6db1-98e0-45b3-bf89-2d01f030a069" alt="iOS Screenshot 2" width="400"/>
+  </p>
+  <p>
+    <img src="https://github.com/user-attachments/assets/94ae562f-3137-4064-a8a7-c48f4e06387d" alt="iOS Screenshot 3" width="400"/>
+    <img src="https://github.com/user-attachments/assets/cfc87408-177d-407f-a3f2-75deacb209c8" alt="iOS Screenshot 4" width="400"/>
+  </p>
+</details>
+
 
 ## Technologies Used
 ### Core
