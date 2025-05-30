@@ -43,6 +43,10 @@ My Movie App is a technical test using React Native CLI, where the goal is to cl
     <img src="https://github.com/user-attachments/assets/1d048793-c026-4789-bda5-a82007b3965f" alt="iOS Screenshot 3" width="400"/>
     <img src="https://github.com/user-attachments/assets/a8c8cf8f-63a2-477f-a408-cd18ce9bbad3" alt="iOS Screenshot 4" width="400"/>
   </p>
+   <p>
+    <img src="https://github.com/user-attachments/assets/a5b22225-cef0-4bf5-959c-feb2a802eb01" alt="iOS Screenshot 3" width="400"/>
+    <img src="https://github.com/user-attachments/assets/de71289c-c9ff-45ce-af48-d2cbd77a4370" alt="iOS Screenshot 4" width="400"/>
+  </p>
 </details>
 
 
