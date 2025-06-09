@@ -78,21 +78,26 @@ npm install --force
    ```
    
 ## Run
-Start the app
+Start metro:
+```sh
+# Using npm
+npm start
 
-   ```bash
-    npm start
-   ```
+# OR using Yarn
+yarn start
+```
 
-### Run for Android
-```bash
-# using npm
+### Build and run for Android
+
+```sh
+# Using npm
 npm run android
 
 # OR using Yarn
 yarn android
 ```
 
+### Build and run for iOS
 Before running on iOS for the first time, make sure to install CocoaPods dependencies:
 ```bash
 cd ios
@@ -100,7 +105,7 @@ pod install
 cd ..
 ```
 
-### Run for iOS
+Then:
 ```bash
 # using npm
 npm run ios
