@@ -1,5 +1,5 @@
 # MyMovie App
-Mobile application for movies and series developed with React Native CLI. It clones a basic version of Netflix and fetches movie and series data from The Movie Database (TMDB) API. It allows users to explore content by categories, view details, search for titles, and see recommendations.s
+Mobile application for movies and series developed with React Native CLI. It clones a basic version of Netflix and fetches movie and series data from The Movie Database (TMDB) API. It allows users to explore content by categories, view details, search for titles, and see recommendations.
 
 ## Features
 
