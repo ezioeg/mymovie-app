@@ -1,5 +1,5 @@
 # MyMovie App
-MyMovie App is a technical test using React Native CLI, where the goal is to clone a basic version of Netflix within a limited time. The project uses The Movie Database (TMDB) API to fetch and display movie and TV show data.
+Mobile application for movies and series developed with React Native CLI. It clones a basic version of Netflix and fetches movie and series data from The Movie Database (TMDB) API. It allows users to explore content by categories, view details, search for titles, and see recommendations.
 
 ## Features
 
