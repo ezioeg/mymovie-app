@@ -1,5 +1,5 @@
 ## 🎬 MyMovie App  
-Mobile application developed with React Native CLI. It replicates a basic version of Netflix and consumes content from The Movie Database (TMDB) API.
+Mobile application developed with React Native CLI. It replicates a basic version of Netflix and consumes content from [The Movie Database (TMDB) REST API](https://www.themoviedb.org/documentation/api).
 
 ### Features  
 - **Home**  
