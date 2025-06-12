@@ -52,7 +52,7 @@ MyMovie App is a technical test using React Native CLI, where the goal is to clo
 
 ## Technologies Used
 ### Core
-- [React Native](https://reactnative.dev/) `0.79.2`
+- [React Native](https://reactnative.dev/) `v0.79.2`
 - [React](https://reactjs.org/) `v19.0.0`
 - [React Navigation Native](https://reactnavigation.org/docs/getting-started) `v7.1.8`
 - [React Navigation Native Stack](https://reactnavigation.org/docs/native-stack-navigator) `v7.3.12`
