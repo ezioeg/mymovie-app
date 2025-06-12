@@ -1,22 +1,18 @@
-# MyMovie App
-Mobile application for movies and series developed with React Native CLI. It clones a basic version of Netflix and fetches movie and series data from The Movie Database (TMDB) API. It allows users to explore content by categories, view details, search for titles, and see recommendations.
+## MyMovie App  
+Mobile application developed with React Native CLI. It replicates a basic version of Netflix and consumes content from The Movie Database (TMDB) API.
 
-## Features
+### Features  
+- **Home Screen**  
+  Displays a hero banner with a highlighted title and content lists filtered by Movies, Series, or Category.  
+  - Categories include Drama, Horror, Comedy, Action, and more.  
+  - Content sections include Trending, Top Rated, Upcoming, etc.
 
-- **Home**
-  - A hero banner featuring the most highlighted movie or TV show.
-  - A button section to filter by Movies, Series, or Categories. When selecting Categories, a translucent overlay appears allowing users to choose genres such as Drama, Horror, Comedy, Action, among others.
-  - Scrollable lists of content based on the selected section (Movies, Series, or the chosen Category), organized by: Trending, Top Rated, Upcoming and others.
-- **Details**
-  - Thumbnail image of the poster (clickable to play the main video of the movie or series).
-  - Title, release date, and rating.
-  - General description of the content.
-  - List of trailers and related content.
-  - Cast and crew information (e.g., actors, directors, writers).
-- **Search**
-  - Initially displays recommended content.
-  - Allows searching by movie or series title.
-  - Applies the previously selected filters (Movies or Series) to show relevant results.
+- **Detail View**  
+  Shows thumbnail, title, release date, rating, description, trailers, related content, and cast/crew info.
+
+- **Search**  
+  Allows users to search titles and view recommendations.  
+  - Results are filtered by the previously selected type (Movies or Series).
  
 <details>
   <summary>📱 Android screenshots</summary>
