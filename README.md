@@ -2,7 +2,7 @@
 Mobile application developed with React Native CLI. It replicates a basic version of Netflix and consumes content from The Movie Database (TMDB) API.
 
 ### Features  
-- **Home Screen**  
+- **Home**  
   Displays a hero banner with a highlighted title and content lists filtered by Movies, Series, or Category.  
   - Categories include Drama, Horror, Comedy, Action, and more.  
   - Content sections include Trending, Top Rated, Upcoming, etc.
